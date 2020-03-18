@@ -23,6 +23,16 @@ public class SLList {
         size = 1;
     }
 
+    public SLList(int[] x) {
+        sentinel = new IntNode(-1, null);
+        IntNode p = sentinel;
+        for (int i = 0; i < x.length; i++) {
+            p.next = new IntNode(x[i], null);
+            size += 1;
+            p = p.next;
+        }
+    }
+
     /** Adds an item to the front of the list. */
     public void addsentinel(int x) {
         sentinel.next = new IntNode(x, sentinel.next);
@@ -44,6 +54,26 @@ public class SLList {
         p.next = new IntNode(x, null);
     }
 
+    /* Delete the 1st element*/
+    public void delteFirst() {
+        IntNode p = sentinel;
+        if (p.next == null) {
+            return;
+        }
+        size -= 1;
+        p.next = p.next.next;
+    }
+
+    /* Print the list. */
+    public void pritnAll() {
+        IntNode p = sentinel;
+        while (p.next != null) {
+            System.out.print(p.next.item + " ");
+            p = p.next;
+        }
+        System.out.println();
+    }
+
     public int size() {
         return size;
     }
@@ -62,10 +92,16 @@ public class SLList {
     // }
 
     public static void main(String[] args) {
-       SLList L = new SLList(1);
+       int[] x = {1,2,3};
+       SLList L = new SLList(x);
        L.addsentinel(10);
        L.addsentinel(5);
-       System.out.print(L.size());
+       System.out.println(L.size());
+       L.pritnAll();
+       L.delteFirst();
+       L.pritnAll();
+       L.delteFirst();
+       L.pritnAll();
     }
 
 }
