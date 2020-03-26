@@ -18,7 +18,9 @@ Integer -> String:
 
 **Integer.toString()**
 
-ith element in string s: 
+ith element in string s:
+
+`==` compares the addresses while `.equals` tests the values. 
 
 **s.charAt(i)**
 

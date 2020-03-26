@@ -130,7 +130,7 @@ public class ArrayDeque<T> {
 
 
     public static void main(String[] args) {
-        ArrayDeque<Integer> a = new ArrayDeque<Integer>();
+        ArrayDeque<Integer> a = new ArrayDeque();
 //        a.addLast(1);
 //        a.printDeque();
 //        a.addLast(2);
@@ -141,7 +141,7 @@ public class ArrayDeque<T> {
             a.addFirst(i);
         }
         System.out.println(a.get(0));
-        ArrayDeque<Integer> b = new ArrayDeque<Integer>(a);
+        ArrayDeque<Integer> b = new ArrayDeque(a);
         for (int i = 0; i < 100; i++) {
             a.removeFirst();
         }
