@@ -20,7 +20,11 @@ Integer -> String:
 
 ith element in string s:
 
-`==` compares the addresses while `.equals` tests the values. 
+`==` compares the addresses while `.equals` tests the values.
+
+`str1.compareTo(str2)`:
+
+return negative number if str1<str2, 0 if equal, positive if > .
 
 **s.charAt(i)**
 

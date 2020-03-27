@@ -1,6 +1,5 @@
-import java.util.Objects;
-
 public class ArrayDeque<T> {
+
     private T[] items;
     private int size, nextFirst, nextLast, length;
 
@@ -153,5 +152,4 @@ public class ArrayDeque<T> {
         System.out.print(b.get(0));
 
     }
-
 }
