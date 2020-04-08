@@ -2,9 +2,10 @@
 This is the repo I used to study CS61B Data Structure Spring 2019. :blush:
 
 ## Complement
-- [ ] Homework 0
-- [ ] Lab 0
+- [X] Homeworks
+- [X] Labs
 - [X] project 0
+- [X] project 1a,b
 
 ## Language
 Java
@@ -28,6 +29,10 @@ return negative number if str1<str2, 0 if equal, positive if > .
 
 **s.charAt(i)**
 
-**private** Cannot be used outside this .java file
+**private** Cannot be used outside this class
 
 **static** belong to the class instead of the instance
+
+**implements** something like a father class that define the function.
+
+**extends** can inherit the father class function except the constructor fn.
