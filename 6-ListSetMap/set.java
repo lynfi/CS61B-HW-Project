@@ -39,6 +39,7 @@ public class set<T> implements Iterable<T> {
     }
 
     /** returns an iterator (a.k.a. seer) into ME */
+    @Override
     public Iterator<T> iterator() {
         return new ArraySetIterator();
     }
@@ -84,7 +85,7 @@ public class set<T> implements Iterable<T> {
         if (other.getClass() != this.getClass()) {
             return false;
         }
-        ArraySet<T> o = (ArraySet<T>) other;
+        set<T> o = (set<T>) other;
         if (o.size() != this.size()) {
             return false;
         }
@@ -110,6 +111,7 @@ public class set<T> implements Iterable<T> {
 
         //iteration
         Iterator<Integer> seer = aset.iterator();
+        // or Iterator<Integer> seer = aset.new ArraySetIterator();
         while (seer.hasNext()) {
         	System.out.println(seer.next());	
         }
@@ -121,6 +123,7 @@ public class set<T> implements Iterable<T> {
         bset.add(23);
         bset.add(42);
         System.out.println(bset);
+        System.out.println(aset.equals(bset));
     }
 
 }
