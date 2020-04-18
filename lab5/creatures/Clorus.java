@@ -18,7 +18,7 @@ import static huglife.HugLifeUtils.randomInt;
  *
  * @author Josh Hug
  */
-public class Plip extends Creature {
+public class Clorus extends Creature {
 
     /**
      * red color.
@@ -36,18 +36,18 @@ public class Plip extends Creature {
     /**
      * creates plip with energy equal to E.
      */
-    public Plip(double e) {
-        super("plip");
-        r = 0;
+    public Clorus(double e) {
+        super("clorus");
+        r = 34;
         g = 0;
-        b = 0;
+        b = 231;
         energy = e;
     }
 
     /**
      * creates a plip with energy equal to 1.
      */
-    public Plip() {
+    public Clorus() {
         this(1);
     }
 
@@ -60,9 +60,6 @@ public class Plip extends Creature {
      * that you get this exactly correct.
      */
     public Color color() {
-        r = 99;
-        b = 76;
-        g = (int) (96 * energy + 63);
         return color(r, g, b);
     }
 
@@ -70,7 +67,7 @@ public class Plip extends Creature {
      * Do nothing with C, Plips are pacifists.
      */
     public void attack(Creature c) {
-        // do nothing.
+        energy += c.energy();
     }
 
     /**
@@ -79,7 +76,7 @@ public class Plip extends Creature {
      * private static final variable. This is not required for this lab.
      */
     public void move() {
-        energy = energy - .15;
+        energy = energy - .03;
     }
 
 
@@ -87,7 +84,7 @@ public class Plip extends Creature {
      * Plips gain 0.2 energy when staying due to photosynthesis.
      */
     public void stay() {
-        energy = Math.min(2., energy + .2);
+        energy = energy - .01;
     }
 
     /**
@@ -95,9 +92,9 @@ public class Plip extends Creature {
      * lost to the process. Now that's efficiency! Returns a baby
      * Plip.
      */
-    public Plip replicate() {
+    public Clorus replicate() {
         this.energy *= .5;
-        return new Plip(this.energy);
+        return new Clorus(this.energy);
     }
 
     /**
@@ -116,7 +113,7 @@ public class Plip extends Creature {
     public Action chooseAction(Map<Direction, Occupant> neighbors) {
         // Rule 1
         Deque<Direction> emptyNeighbors = new ArrayDeque<>();
-        boolean anyClorus = false;
+        Deque<Direction> plipNeighbors = new ArrayDeque<>();
         // TODO
         // (Google: Enhanced for-loop over keys of NEIGHBORS?)
         // for () {...}
@@ -124,27 +121,23 @@ public class Plip extends Creature {
             if (neighbors.get(d).name().equals("empty")) {
                 emptyNeighbors.add(d);
             }
-            if (neighbors.get(d).name().equals("clorus")) {
-                anyClorus = true;
+            if (neighbors.get(d).name().equals("plip")) {
+                plipNeighbors.add(d);
             }
         }
 
         if (emptyNeighbors.size() == 0) { // FIXME
             // TODO
             return new Action(Action.ActionType.STAY);
-        } else if (energy >= 1.) {
+        } else if (plipNeighbors.size() > 0) {
             // Rule 2
             // HINT: randomEntry(emptyNeighbors)
-            return new Action(Action.ActionType.REPLICATE, randomEntry(emptyNeighbors));
-        } else if (anyClorus) {
+            return new Action(Action.ActionType.ATTACK, randomEntry(plipNeighbors));
+        } else if (energy >= 1.) {
             // Rule 3
-            if (randomInt(0, 1) == 0) {
-                return new Action(Action.ActionType.STAY);
-            } else {
-                return new Action(Action.ActionType.MOVE, randomEntry(emptyNeighbors));
-            }
+            return new Action(Action.ActionType.REPLICATE, randomEntry(emptyNeighbors));
         }
         // Rule 4
-        return new Action(Action.ActionType.STAY);
+        return new Action(Action.ActionType.MOVE, randomEntry(emptyNeighbors));
     }
 }
