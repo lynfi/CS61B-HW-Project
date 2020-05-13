@@ -2,6 +2,9 @@ package es.datastructur.synthesizer;
 
 import org.junit.Test;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 import static org.junit.Assert.*;
 
 /**
@@ -13,6 +16,7 @@ import static org.junit.Assert.*;
 public class TestArrayRingBuffer {
     @Test
     public void someTest() {
+        Queue<Integer> t = new ArrayDeque<>();
         ArrayRingBuffer<Integer> arb = new ArrayRingBuffer<>(3);
         assertTrue(arb.isEmpty());
         arb.enqueue(1);

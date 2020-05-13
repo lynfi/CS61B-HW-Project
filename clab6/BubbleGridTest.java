@@ -1,4 +1,5 @@
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class BubbleGridTest {
@@ -7,9 +8,19 @@ public class BubbleGridTest {
     public void testBasic() {
 
         int[][] grid = {{1, 0, 0, 0},
-                        {1, 1, 1, 0}};
+                {1, 1, 1, 0}};
         int[][] darts = {{1, 0}};
         int[] expected = {2};
+
+        validate(grid, darts, expected);
+    }
+
+    @Test
+    public void testBasic2() {
+
+        int[][] grid = {{1}, {1}, {1}, {1}, {1}};
+        int[][] darts = {{3, 0}, {4, 0}, {1, 0}, {2, 0}, {0, 0}};
+        int[] expected = {1, 0, 1, 0, 0};
 
         validate(grid, darts, expected);
     }
