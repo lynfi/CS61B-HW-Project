@@ -4,8 +4,7 @@ This is the repo I used to study CS61B Data Structure Spring 2019. :blush:
 ## Complement
 - [X] Homeworks
 - [X] Labs
-- [X] project 0
-- [X] project 1a,b
+- [X] Projects, skip clab7 and hw2
 
 ## Language
 Java
