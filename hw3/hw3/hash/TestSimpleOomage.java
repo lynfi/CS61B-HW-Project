@@ -1,6 +1,8 @@
 package hw3.hash;
 
+import edu.princeton.cs.algs4.StdRandom;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import java.util.Set;
@@ -22,10 +24,22 @@ public class TestSimpleOomage {
 
     @Test
     public void testHashCodePerfect() {
-        /* TODO: Write a test that ensures the hashCode is perfect,
-          meaning no two SimpleOomages should EVER have the same
-          hashCode UNLESS they have the same red, blue, and green values!
-         */
+        Set<Integer> set = new HashSet<>();
+        int i = 0, j = 0, k = 0;
+        while (i <= 255) {
+            j = 0;
+            while (j <= 255) {
+                k = 0;
+                while (k <= 255) {
+                    SimpleOomage o = new SimpleOomage(i, j, k);
+                    assertTrue(!set.contains(o.hashCode()));
+                    set.add(o.hashCode());
+                    k += 5;
+                }
+                j += 5;
+            }
+            i += 5;
+        }
     }
 
     @Test
@@ -39,7 +53,7 @@ public class TestSimpleOomage {
         assertNotEquals(ooA, "ketchup");
     }
 
-    /*
+
     @Test
     public void testHashCodeAndEqualsConsistency() {
         SimpleOomage ooA = new SimpleOomage(5, 10, 20);
@@ -47,10 +61,9 @@ public class TestSimpleOomage {
         HashSet<SimpleOomage> hashSet = new HashSet<>();
         hashSet.add(ooA);
         assertTrue(hashSet.contains(ooA2));
-    }*/
+    }
 
-    /* TODO: Uncomment this test after you finish haveNiceHashCodeSpread in OomageTestUtility */
-    /*@Test
+    @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
         int N = 10000;
@@ -60,9 +73,22 @@ public class TestSimpleOomage {
         }
 
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
-    }*/
+    }
 
-    /** Calls tests for SimpleOomage. */
+    @Test
+    public void testWithDeadlyParams() {
+        List<Oomage> deadlyList = new ArrayList<>();
+        int N = 1000;
+        for (int i = 0; i < N; i++) {
+            deadlyList.add(new SimpleOomage(StdRandom.uniform(0, 51) * 5,
+                    StdRandom.uniform(0, 51) * 5, 5));
+        }
+        assertTrue(OomageTestUtility.haveNiceHashCodeSpread(deadlyList, 10));
+    }
+
+    /**
+     * Calls tests for SimpleOomage.
+     */
     public static void main(String[] args) {
         jh61b.junit.textui.runClasses(TestSimpleOomage.class);
     }
