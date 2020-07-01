@@ -1,4 +1,4 @@
-# Berkeley CS61B SP19
+# Data Structure CS61B SP19
 This is the repo I used to study CS61B Data Structure Spring 2019. :blush:
 
 ## Complement
